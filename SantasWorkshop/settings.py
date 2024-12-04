@@ -31,8 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 MY_APPS = [
-    'SantasWorkshop.base'
-    'SantasWorkshop.accounts'
+    'SantasWorkshop.base',
+    'SantasWorkshop.accounts',
 ]
 
 INSTALLED_APPS = [

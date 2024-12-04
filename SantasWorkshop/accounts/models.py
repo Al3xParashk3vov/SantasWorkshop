@@ -56,9 +56,3 @@ class Profile(models.Model):
     last_name = models.CharField(
         max_length=30,
     )
-
-    postcode = models.CharField(
-        max_length=10,
-        blank=True,
-        null=True,
-    )

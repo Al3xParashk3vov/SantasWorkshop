@@ -5,7 +5,7 @@ from SantasWorkshop.accounts.forms import CustomUserForm
 
 
 # Create your views here.
-class UserRegisterView(CreateView):
-    form_class = CustomUserForm
-    template_name = 'registration/register.html'
-    success_url = reverse_lazy('index')
+# class UserRegisterView(CreateView):
+#     form_class = CustomUserForm
+#     template_name = 'registration/register.html'
+#     success_url = reverse_lazy('index')
