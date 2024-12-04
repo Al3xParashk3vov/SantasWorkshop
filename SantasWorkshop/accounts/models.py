@@ -5,9 +5,6 @@ from django.utils.translation import gettext_lazy as _
 
 from SantasWorkshop.accounts.managers import AppUserManager
 
-
-# Create your models here.
-
 class AppUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         unique=True
@@ -36,11 +33,11 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     objects = AppUserManager()
 
     EMAIL_FIELD = "email"
-    USERNAME_FIELD = 'email'  # USERNAME_FIELD means the first credential in our auth
-    REQUIRED_FIELDS = ["username"]
+    USERNAME_FIELD = 'username'  # USERNAME_FIELD means the first credential in our auth
+    REQUIRED_FIELDS = ["email"]
 
     def __str__(self):
-        return self.email
+        return self.username
 
 
 
@@ -60,3 +57,8 @@ class Profile(models.Model):
         max_length=30,
     )
 
+    postcode = models.CharField(
+        max_length=10,
+        blank=True,
+        null=True,
+    )
