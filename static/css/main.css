@@ -1,0 +1,22 @@
+#main-background {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    /*z-index: 1;*/
+    /*background-color: #232323;*/
+}
+
+
+#main-view {
+    position: absolute;
+    top: 0;
+    left: 15%; /* leave 15% space for the left sidebar */
+    right: 15%;
+    width: 70%; /* take up 70% of the screen */
+    height: 100%;
+    background-color: pink; /* add a background color to the main view */
+    padding: 20px;
+    /*z-index: 5; !* set the z-index to a higher value *!*/
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);*/
+}
