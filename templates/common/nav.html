@@ -8,7 +8,7 @@
     <span></span>
 
     <!-- logo -->
-    <a href="#" class="menu-logo nb-l">
+    <a href="{% url 'home' %}" class="menu-logo nb-l">
         <img src="{% static 'images/santa-claus.png' %}" alt="🎅 "/>
     </a>
 
@@ -38,12 +38,12 @@
         </ul>
         <ul>
             <li>
-                <a href="#signup" class="nb-l">
-                    Sign-up
+                <a href="{% url 'register' %}" class="nb-l">
+                    Register
                 </a>
             </li>
             <li>
-                <a href="#login" class="nb-l">
+                <a href="{% url 'login' %}" class="nb-l">
                     Login
                 </a>
             </li>
