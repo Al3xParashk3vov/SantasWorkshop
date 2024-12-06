@@ -17,6 +17,6 @@
     height: 100%;
     background-color: rgba(255, 255, 255, 0.25); /* pink with 10% opacity */
     padding: 20px;
-    z-index: 5; /* set the z-index to a higher value */
+    z-index: 1; /* set the z-index to a higher value */
     /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);*/
 }

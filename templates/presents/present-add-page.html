@@ -1,0 +1,12 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <div>
+        <h2>What present do you want from Santa this year?</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <button class="btn btn-primary ml-2" type="submit">Add present to wish list</button>
+        </form>
+    </div>
+{% endblock %}

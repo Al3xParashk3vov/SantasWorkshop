@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 MY_APPS = [
     'SantasWorkshop.base',
     'SantasWorkshop.accounts',
+    'SantasWorkshop.presents',
 ]
 
 INSTALLED_APPS = [

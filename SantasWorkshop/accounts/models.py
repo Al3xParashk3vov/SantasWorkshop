@@ -1,3 +1,5 @@
+from email.policy import default
+
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import AbstractUser, User, PermissionsMixin
 from django.db import models
@@ -16,18 +18,11 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     )
 
     is_staff = models.BooleanField(
-        _("staff status"),
         default=False,
-        help_text=_("Designates whether the user can log into this admin site."),
     )
 
     is_active = models.BooleanField(
-        _("active"),
         default=True,
-        help_text=_(
-            "Designates whether this user should be treated as active. "
-            "Unselect this instead of deleting accounts."
-        ),
     )
 
     objects = AppUserManager()
@@ -55,4 +50,10 @@ class Profile(models.Model):
 
     last_name = models.CharField(
         max_length=30,
+    )
+
+    image = models.ImageField(
+        upload_to='profile_photos/',
+        blank=True,
+        null=True,
     )
