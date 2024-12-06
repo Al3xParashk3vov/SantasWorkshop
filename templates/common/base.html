@@ -16,11 +16,10 @@
     {% include 'common/nav.html' %}
     
     {% include 'common/lights.html' %}
-    <div id="main-background">
     
-        <div class="side-bar-snow" id="left-sidebar">
-            <div class="snowflakes left" aria-hidden="true"></div>
-        </div>
+    <div id="main-background">
+        {% include 'common/snow.html' %}
+        
         
         <main id="main-view">
             {% block content %}
@@ -28,10 +27,7 @@
             {% endblock %}
         
         </main>
-        <div class="side-bar-snow" id="right-sidebar">
-            
-            <div class="snowflakes right" aria-hidden="true"></div>
-        </div>
+        
         
     </div>
     

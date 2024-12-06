@@ -6,6 +6,6 @@ from SantasWorkshop.base.views import index
 
 urlpatterns = [
 # path('', HomeView.as_view(), name='home'),
-    path('', index, name='home'),
+    path('', index, name='index'),
 
 ]

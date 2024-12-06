@@ -3,7 +3,7 @@
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    /*z-index: 1;*/
+    z-index: 10;
     /*background-color: #232323;*/
 }
 
@@ -15,8 +15,8 @@
     right: 15%;
     width: 70%; /* take up 70% of the screen */
     height: 100%;
-    background-color: pink; /* add a background color to the main view */
+    background-color: rgba(255, 255, 255, 0.25); /* pink with 10% opacity */
     padding: 20px;
-    /*z-index: 5; !* set the z-index to a higher value *!*/
+    z-index: 5; /* set the z-index to a higher value */
     /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);*/
 }

@@ -8,7 +8,7 @@
     <span></span>
 
     <!-- logo -->
-    <a href="{% url 'home' %}" class="menu-logo nb-l">
+    <a href="{% url 'index' %}" class="menu-logo nb-l">
         <img src="{% static 'images/santa-claus.png' %}" alt="🎅 "/>
     </a>
 
@@ -16,7 +16,7 @@
     <div class="menu">
         <ul>
             <li>
-                <a href="#home" class="nb-l">
+                <a href="{% url 'index' %}" class="nb-l">
                     Home
                 </a>
             </li>
