@@ -1,0 +1,20 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+	<div id="Profile-Details">
+         {% if object.profile.profile_picture %}
+             <img src="{{ object.profile.profile_picture }}" alt="profile_picture" />
+         {% else %}
+             <img src="{% static 'images/elf1.png' %}" alt="elf_image" />
+         {% endif %}
+        <h1>{{ user_profile }}</h1>
+    </div>
+
+
+    {% if request.user.pk == object.pk %}
+        <h2><a href="{% url 'profile-edit' request.user.pk %}">Edit Profile</a></h2>
+    {% endif %}
+
+
+{% endblock %}

@@ -2,7 +2,7 @@
     position: relative;
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
+    overflow: auto;
     z-index: 10;
     /*background-color: #232323;*/
 }
@@ -20,3 +20,4 @@
     z-index: 1; /* set the z-index to a higher value */
     /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);*/
 }
+
