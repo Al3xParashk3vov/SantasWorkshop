@@ -1,5 +1,6 @@
 from email.policy import default
 
+from django.contrib.auth import get_user_model
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import AbstractUser, User, PermissionsMixin
 from django.db import models
@@ -37,9 +38,11 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 
 
 class Profile(models.Model):
+
     user = models.OneToOneField(
         AppUser,
         on_delete=models.CASCADE,
+        primary_key=True,
     )
 
     age = models.IntegerField()

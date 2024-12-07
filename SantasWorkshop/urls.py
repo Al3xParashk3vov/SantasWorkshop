@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('SantasWorkshop.base.urls')),
     path('accounts/', include('SantasWorkshop.accounts.urls')),
+    path('presents/', include('SantasWorkshop.presents.urls')),
 ]
 
 if settings.DEBUG:

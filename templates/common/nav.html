@@ -25,11 +25,16 @@
                     Pricing
                 </a>
             </li>
-            <li>
-                <a href="#blog" class="nb-l">
-                    Blog
-                </a>
-            </li>
+            {% if request.user.is_authenticated %}
+                <ul>
+                    <li>
+                        <a href="{% url 'present-add' %}" class="nb-l">
+                            Presents
+                        </a>
+                    </li>
+                </ul>
+            {% endif %}
+            
             <li>
                 <a href="#docs" class="nb-l">
                     Docs
