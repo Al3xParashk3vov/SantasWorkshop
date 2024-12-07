@@ -21,6 +21,7 @@ class UserRegisterView(CreateView):
         if get_user_model().objects.filter(username=username).exists():
             form.add_error('username', 'Username already exists')
             return self.form_invalid(form)
+
         return super().form_valid(form)
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
