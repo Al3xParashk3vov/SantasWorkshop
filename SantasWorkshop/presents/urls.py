@@ -6,8 +6,8 @@ urlpatterns = [
     # path('add/', views.PresentAddPage.as_view(), name='present-add'),
     path('add/', views.present_add_page, name='present-add'),
     # path('<int:pk>/', include([
-    #     path('', views.PhotoDetailsView.as_view(), name='photo-details'),
-    #     path('edit/', views.PhotoEditPage.as_view(), name='photo-edit'),
+    #     path('', views.PresentDetailsView.as_view(), name='present-details'),
+    #     path('edit/', views.PresentEditPage.as_view(), name='present-edit'),
     #     path('delete/', views.photo_delete, name='photo-delete'),
     # ])),
 ]
