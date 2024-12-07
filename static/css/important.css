@@ -1,0 +1,30 @@
+/*.profile-image{*/
+/*    float: left;*/
+/*    height: 100%;*/
+/*    width: auto;*/
+/*    margin-right: 20px;*/
+/*}*/
+
+/*.profile-image img{*/
+/*    border-radius: 12px 0 0 7px;*/
+/*    height: 100%;*/
+/*}*/
+
+.Profile-Details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.profile-image img {
+  width: 250px;
+  height: 250px;
+    margin-right: 20px;
+
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
