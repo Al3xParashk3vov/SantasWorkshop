@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block content %}
-    <div id="Profile-Details">
+    <div id="Profile-Details" class="container">
         <div class="profile-image">
             {% if object.profile.image %}
-                <img src="{{ object.profile.image.url }}" alt="profile_picture" class=profile-image/>
+                <img src="{{ object.profile.image.url }}" alt="profile_picture" />
             {% else %}
-                <img src="{% static 'images/elf1.png' %}" alt="elf_image"/>
+                <img src="{% static 'images/elf1.png' %}" alt="elf_image" />
             {% endif %}
         </div>
         <div class="profile-info">
@@ -21,9 +21,4 @@
             {% endif %}
         </div>
     </div>
-
-
-    
-
-
 {% endblock %}

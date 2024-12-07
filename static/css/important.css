@@ -10,21 +10,29 @@
 /*    height: 100%;*/
 /*}*/
 
-.Profile-Details {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
+/*№Profile-Details {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    height: 100%;*/
+/*}*/
 
 .profile-image img {
-  width: 250px;
-  height: 250px;
-    margin-right: 20px;
+    width: 150px; /* Set the image width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 12px 0 0 7px; /* Optional if you want rounded corners */
+}
 
+/* Container to display image and text side by side */
+#Profile-Details {
+    display: flex; /* Makes children (image and info) sit next to each other */
+    justify-content: flex-start; /* Align items to the start of the row */
+    align-items: center; /* Align items vertically */
+    gap: 20px; /* Space between image and text */
+    background-color: rgba(0, 150, 0, 0.5);
+    margin-top: 100px;
 }
 
 .profile-info {
-    display: flex;
-    flex-direction: column;
+    flex: 1; /* Allow text to take up the remaining space */
 }

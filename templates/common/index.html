@@ -1,6 +1,13 @@
 {% extends 'common/base.html' %}
-
+{% load static %}
 {% block content %}
-    <h1>Welcome to Santa's Workshop!!!</h1>
-    <p> Ho-ho-hoo 🎅</p>
+    <header>
+        <h1>Welcome to Santa's Workshop!!!</h1>
+        <p class="d-flex justify-content-center"> Ho-ho-hoo 🎅</p>
+        <div class="d-flex justify-content-center" id="gif-box">
+            <img src="{% static 'images/workshop.gif' %}"  alt="Santa's Workshop Gif">
+        </div>
+    </header>
+
+
 {% endblock %}
