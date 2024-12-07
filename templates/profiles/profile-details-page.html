@@ -3,8 +3,8 @@
 
 {% block content %}
 	<div id="Profile-Details">
-         {% if object.profile.profile_picture %}
-             <img src="{{ object.profile.profile_picture }}" alt="profile_picture" />
+         {% if object.profile.image %}
+             <img src="{{ object.profile.image.url }}" alt="profile_picture" />
          {% else %}
              <img src="{% static 'images/elf1.png' %}" alt="elf_image" />
          {% endif %}
