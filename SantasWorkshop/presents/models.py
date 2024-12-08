@@ -19,10 +19,11 @@ class Present(models.Model):
 
     image = models.URLField(
         blank=False,
-        help_text='Help Santa find this present!',
+        help_text='Help Santa identify this present!',
     )
 
     user = models.ForeignKey(
         to=UserModel,
         on_delete=models.CASCADE,
+        related_name='presents'
     )

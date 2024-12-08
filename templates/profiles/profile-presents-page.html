@@ -1,29 +1,33 @@
 {% extends 'common/base.html' %}
+{% load static %}
 
 {% block content %}
-
-    <div class="container">
-        <div class="posts">
-            {% for present in presents %}
-                <a href="present-details"></a>
-                <p>{{ present.name }} ({{ present.description }})</p>
-            {% endfor %}
-            {% for post in posts %}
-                <a id="post-url" href="{% url 'details-post' post.pk %}">
-                    <div class="post">
-                        
-
-                        <div class="post-meta">
-                            <span>Posted by {{ post.author|default:"anonymous" }} on {{ post.created_at|date:"d-M-Y" }}</span>
-                        </div>
-                    </div>
+    <div class="present-box">
+        {% for present in presents %}
+            <div class="present">
+                <a href="{% url 'present-details' present.pk %}">
+                    <img src="{{ present.image }}" class="present-image" alt="{{ present.name }}">
                 </a>
+                {% if request.user.pk == present.user.pk %}
+                    <div class="present-actions">
+                        <a href="{% url 'present-edit' present.pk %}" class="edit-btn">
+                            <img src="{% static 'images/edit.png' %}" alt="Edit" class="action-icon">
+                        </a>
+                        <a href="{% url 'present-delete' present.pk %}" class="delete-btn">
+                            <img src="{% static 'images/delete.png' %}" alt="Delete" class="action-icon">
+                        </a>
+                    </div>
+                {% endif %}
+                <h3>{{ present.name|truncatechars:10 }}</h3>
+                <p>{{ present.description|truncatechars:10 }}</p>
+            </div>
 
-            {% empty %}
-                <h1 class="no-posts">No Posts</h1>
-            {% endfor %}
 
-            
-        </div>
+
+        {% empty %}
+            <p>No presents added yet!</p>
+            <a href="{% url 'present-add' %}" class="add-present-btn">Wish for your first present!</a>
+        {% endfor %}
     </div>
 {% endblock %}
+

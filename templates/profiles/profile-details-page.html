@@ -12,7 +12,6 @@
         </div>
         <div>
             {% if request.user.pk == object.pk %}
-
                 <h2><a href="{% url 'profile-edit' request.user.pk %}">
                     <img src="{% static 'images/edit.png' %}" alt="edit button" class="edit-object"/>
                 </a></h2>
@@ -26,8 +25,7 @@
             <p>First Name: {{ object.profile.first_name }}</p>
             <p>Last Name: {{ object.profile.last_name }}</p>
             <p>Age: {{ object.profile.age }}</p>
-            <p>Presents wished for: {{ object.profile.presents }}</p>
-
+            <p>Presents wished for: <a href="{% url 'profile-presents' object.pk %}">{{ object.profile.presents_count }}</a></p>
         </div>
     </div>
 {% endblock %}

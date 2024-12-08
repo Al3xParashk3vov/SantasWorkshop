@@ -1,0 +1,23 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="present-box">
+        <img src="{{ present.image }}" class="present-image-normal" alt="{{ present.name }}">
+        {% if request.user.pk == present.user.pk %}
+            <div class="present-actions">
+                <a href="{% url 'present-edit' present.pk %}" class="edit-btn">
+                    <img src="{% static 'images/edit.png' %}" alt="Edit" class="action-icon">
+                </a>
+                <a href="{% url 'present-delete' present.pk %}" class="delete-btn">
+                    <img src="{% static 'images/delete.png' %}" alt="Delete" class="action-icon">
+                </a>
+            </div>
+        {% endif %}
+        <h3>{{ present.name }}</h3>
+        <p>{{ present.description }}</p>
+    </div>
+{% endblock %}
+
+   
+

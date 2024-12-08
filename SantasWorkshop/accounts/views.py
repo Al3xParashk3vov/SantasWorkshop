@@ -3,10 +3,11 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 
 from SantasWorkshop.accounts.forms import CustomUserForm, ProfileEditForm
 from SantasWorkshop.accounts.models import Profile
+from SantasWorkshop.presents.models import Present
 
 UserModel = get_user_model()
 
@@ -35,7 +36,6 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
         context['user_profile'] = self.object  # add the user profile to the context
         return context
 
-# UserPassesTestMixin
 class ProfileEditView(LoginRequiredMixin, UpdateView):
     model = Profile
     form_class = ProfileEditForm
@@ -65,3 +65,18 @@ class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         profile = get_object_or_404(Profile, pk=self.kwargs['pk'])
         return self.request.user == profile.user
+
+
+class ProfilePresentsDashboard(LoginRequiredMixin, ListView):
+    model = Present
+    template_name = 'profiles/profile-presents-page.html'
+    context_object_name = 'presents'
+    paginate_by = 6  # Optional: adds pagination for many presents
+
+    def get_queryset(self):
+        return Present.objects.filter(user_id=self.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['total_presents'] = self.get_queryset().count()
+        return context

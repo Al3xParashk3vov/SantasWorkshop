@@ -66,10 +66,10 @@ class Profile(models.Model):
         null=True,
     )
 
-    presents = models.IntegerField(
-        blank=True,
-        null=True,
-    )
+    @property
+    def presents_count(self):
+        """Returns the number of presents created by this user"""
+        return self.user.presents.count()
 
     def __str__(self):
         return f"{self.user.username}'s profile"
