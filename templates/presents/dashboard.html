@@ -1,0 +1,53 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="posts">
+            {% for present in presents %}
+                <a href="{% url 'present-details' post.pk %}">
+                    <div class="post">
+                        <h2>
+                            {{ post.title|capfirst }}
+                        {% if not post.approved %}
+                            {% if 'posts.can_approve_posts' in request.user.get_group_permissions or perms.posts.can_do_approve %}
+                                <a href="{% url 'approve' post.pk %}"><i class="ai-check"></i></a>
+                            {% endif %}
+                        {% endif %}
+                        </h2>
+
+                        <div class="post-meta">
+                            <span>Posted by {{ present.author|default:"anonymous" }}</span>
+                        </div>
+                    </div>
+                </a>
+
+            {% empty %}
+                <h1 class="no-posts">No Posts</h1>
+            {% endfor %}
+
+        
+            {% if not page_obj.has_next and page_obj.number == 1 %}
+                <p>These are the only wishes</p>
+            {% else %}
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1">&laquo; first</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+                
+                        <span class="current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </span>
+                
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">next</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

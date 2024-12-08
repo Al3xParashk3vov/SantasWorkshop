@@ -1,4 +1,7 @@
+from django.contrib.auth import get_user_model
 from django.db import models
+
+UserModel = get_user_model()
 
 # Create your models here.
 class Present(models.Model):
@@ -19,3 +22,7 @@ class Present(models.Model):
         help_text='Help Santa find this present!',
     )
 
+    user = models.ForeignKey(
+        to=UserModel,
+        on_delete=models.CASCADE,
+    )

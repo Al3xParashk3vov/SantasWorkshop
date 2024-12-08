@@ -95,3 +95,30 @@
 
     masthead.appendChild(canvas);
   })();
+
+// Get the element
+let colorElement = document.querySelector('.color:nth-child(1)');
+
+// Define the colors
+let colors = ['#FF6C6C', '#FF3737'];
+
+// Define the duration of each color
+let duration = 5000; // 5 seconds
+
+// Define the current color index
+let currentIndex = 0;
+
+// Function to change the color
+function changeColor() {
+    // Set the background color
+    colorElement.style.background = colors[currentIndex];
+
+    // Increment the current color index
+    currentIndex = (currentIndex + 1) % colors.length;
+
+    // Call the function again after the duration
+    setTimeout(changeColor, duration);
+}
+
+// Call the function for the first time
+changeColor();

@@ -5,9 +5,20 @@
     <div id="Profile-Details" class="container">
         <div class="profile-image">
             {% if object.profile.image %}
-                <img src="{{ object.profile.image.url }}" alt="profile_picture" />
+                <img src="{{ object.profile.image.url }}" alt="profile_picture"/>
             {% else %}
-                <img src="{% static 'images/elf1.png' %}" alt="elf_image" />
+                <img src="{% static 'images/elf1.png' %}" alt="elf_image"/>
+            {% endif %}
+        </div>
+        <div>
+            {% if request.user.pk == object.pk %}
+
+                <h2><a href="{% url 'profile-edit' request.user.pk %}">
+                    <img src="{% static 'images/edit.png' %}" alt="edit button" class="edit-object"/>
+                </a></h2>
+                <h2><a href="{% url 'profile-delete' request.user.pk %}">
+                    <img src="{% static 'images/delete.png' %}" alt="delete button" class="delete-object"/>
+                </a></h2>
             {% endif %}
         </div>
         <div class="profile-info">
@@ -16,9 +27,7 @@
             <p>Last Name: {{ object.profile.last_name }}</p>
             <p>Age: {{ object.profile.age }}</p>
             <p>Presents wished for: {{ object.profile.presents }}</p>
-            {% if request.user.pk == object.pk %}
-                <h2><a href="{% url 'profile-edit' request.user.pk %}">Edit Profile</a></h2>
-            {% endif %}
+
         </div>
     </div>
 {% endblock %}

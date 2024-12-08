@@ -2,7 +2,7 @@
 .form-container {
     max-width: 600px;
     margin: 20px auto;
-    padding: 30px;
+    padding: 100px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -91,4 +91,14 @@ button[type="submit"]:hover {
 /* Required field indicator */
 .required {
     color: #cc0000;
+}
+
+.delete-object{
+    width: 50px;
+    height: auto;
+}
+
+.edit-object{
+    width: 50px;
+    height: auto;
 }

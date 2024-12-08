@@ -21,8 +21,8 @@
                 </a>
             </li>
             <li>
-                <a href="#pricing" class="nb-l">
-                    Pricing
+                <a href="{% url 'dashboard' %}" class="nb-l">
+                    Dashboard
                 </a>
             </li>
             {% if request.user.is_authenticated %}

@@ -1,9 +1,12 @@
 {% extends 'common/base.html' %}
 
 {% block content %}
+    <h1>Please login your account</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form }}
         <button class="btn btn-primary ml-2">Login</button>
     </form>
+
+    
 {% endblock %}
