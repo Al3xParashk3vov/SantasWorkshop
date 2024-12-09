@@ -27,4 +27,9 @@ class DashboardView(ListView):
 
         return queryset
 
+def about(request):
+    return render(request, 'common/about.html')
+
+def story(request):
+    return render(request, 'common/story.html')
 

@@ -2,11 +2,12 @@
 {% load static %}
 {% block content %}
     <header>
-        <h1>Welcome to Santa's Workshop!!!</h1>
+        <h1 style="color: #dddddd">Welcome to Santa's Workshop!!!</h1>
         <p class="d-flex justify-content-center"> Ho-ho-hoo 🎅</p>
         <div class="d-flex justify-content-center" id="gif-box">
             <img src="{% static 'images/workshop.gif' %}"  alt="Santa's Workshop Gif">
         </div>
+        <p>To learn more about us click <a href="{% url 'about' %}">here</a>!</p>
     </header>
 
 
