@@ -12,6 +12,7 @@ from SantasWorkshop.presents.models import Present
 def index(request):
     return render(request, 'common/index.html')
 
+
 class DashboardView(ListView):
     template_name = 'presents/dashboard.html'
     context_object_name = 'presents'
@@ -25,3 +26,5 @@ class DashboardView(ListView):
             queryset = queryset.filter(name__icontains=query)
 
         return queryset
+
+

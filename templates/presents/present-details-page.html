@@ -3,7 +3,16 @@
 
 {% block content %}
     <div class="present-box">
-        <img src="{{ present.image }}" class="present-image-normal" alt="{{ present.name }}">
+        <h1>
+            {% if present.user.profile.first_name %}
+                {{ present.user.profile.first_name }}
+            {% else %}
+                {{ present.user.username }}
+            {% endif %} has wished for:</h1>
+        <div class="image-wrapper">
+            <img src="{{ present.image }}" class="present-image-normal" alt="{{ present.name }}">
+        </div>
+
         {% if request.user.pk == present.user.pk %}
             <div class="present-actions">
                 <a href="{% url 'present-edit' present.pk %}" class="edit-btn">
@@ -14,10 +23,8 @@
                 </a>
             </div>
         {% endif %}
-        <h3>{{ present.name }}</h3>
-        <p>{{ present.description }}</p>
+
+        <h3>Present: {{ present.name }}</h3>
+        <p>Description: {{ present.description }}</p>
     </div>
 {% endblock %}
-
-   
-
