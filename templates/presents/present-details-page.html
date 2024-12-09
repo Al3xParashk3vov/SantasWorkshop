@@ -5,7 +5,7 @@
     <div class="present-box">
         <h1>
             {% if present.user.profile.first_name %}
-                {{ present.user.profile.first_name }}
+                <a href="{% url 'profile-details' present.user.pk %}">{{ present.user.profile.first_name }}</a>
             {% else %}
                 {{ present.user.username }}
             {% endif %} has wished for:</h1>

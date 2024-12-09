@@ -17,7 +17,7 @@ body {
     display: flex;
     align-items: center;
     /*margin-bottom: 20px;*/
-    background: #232323;
+    /*background: #232323;*/
     color: #cdcdcd;
     padding: 20px;
     z-index: 100;
@@ -25,7 +25,7 @@ body {
     user-select: none;
     box-sizing: border-box;
     background-image: repeating-linear-gradient(45deg, transparent, transparent 64px, #FF0000 64px, #FF0000 128px);
-    background-color: #E4E4ED;
+    /*background-color: #E4E4ED;*/
 }
   
 .menu-logo {

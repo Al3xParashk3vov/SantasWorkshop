@@ -5,9 +5,12 @@
     <div class="present-box">
         {% for present in presents %}
             <div class="present">
-                <a href="{% url 'present-details' present.pk %}">
-                    <img src="{{ present.image }}" class="present-image" alt="{{ present.name }}">
-                </a>
+                <div class="image-wrapper">
+                    <a href="{% url 'present-details' present.pk %}">
+                        <img src="{{ present.image }}" class="present-image-normal" alt="{{ present.name }}">
+                    </a>
+                </div>
+
                 {% if request.user.pk == present.user.pk %}
                     <div class="present-actions">
                         <a href="{% url 'present-edit' present.pk %}" class="edit-btn">
@@ -26,7 +29,9 @@
 
         {% empty %}
             <p>No presents added yet!</p>
-            <a href="{% url 'present-add' %}" class="add-present-btn">Wish for your first present!</a>
+            {% if request.user.pk == present.user.pk %}
+                <a href="{% url 'present-add' %}" class="add-present-btn">Wish for your first present!</a>
+            {% endif %}
         {% endfor %}
     </div>
 {% endblock %}
