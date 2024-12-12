@@ -1,31 +1,29 @@
 {% extends 'common/base.html' %}
+{% load static %}
 
 {% block content %}
     <div class="container">
         <div>
-            <h1>Blog Posts</h1>
+            <h1>Santa's Blog</h1>
             {% if user.is_staff %}
-                <a href="{% url 'post_new' %}">
-                    New Post
-                </a>
+                <h1 class="top-message"><a href="{% url 'post_new' %}">
+                    Add a new post to Santa's blog!
+                </a></h1>
             {% endif %}
         </div>
 
         <div>
             {% for post in posts %}
                 <a href="{% url 'post_detail' post.pk %}">
-                <div class="post">
-                    <img src="{{ post.preview_image.url }}" alt="{{ post.title }}">
-                    <h2>{{ post.title }}</h2>
-                    <span>By {{ post.author.get_full_name|default:post.author.username }}</span>
-                    <span>Published on {{ post.created_date|date:"F d, Y" }}</span>
-                    <p>{{ post.description|truncatewords:20 }}</p>
-                    
-                </div>
-                    
-                
+                    <div class="post">
+                        <img src="{{ post.preview_image }}" class="detail-image" alt="{{ post.title }}">
+                        <h2>{{ post.title }}</h2>
+                        <span>By {{ post.author.get_full_name|default:post.author.username }}</span>
+                        <span>Published on {{ post.created_date|date:"F d, Y" }}</span>
+                        <p>{{ post.description|truncatewords:20 }}</p>
+                    </div>
                 </a>
-                
+
             {% empty %}
                 <div>
                     <p>No blog posts currently.</p>

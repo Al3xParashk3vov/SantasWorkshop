@@ -1,55 +1,41 @@
 {% extends 'common/base.html' %}
+{% load static %}
 
 {% block content %}
-    <div class="container mx-auto p-4">
-        <article class="bg-white rounded-lg shadow-md overflow-hidden max-w-4xl mx-auto">
-            {% if post.featured_image %}
-                <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="w-full h-64 object-cover">
-            {% endif %}
+    <div>
 
-            <div class="p-6">
-                <header class="mb-6">
-                    <h1 class="text-3xl font-bold mb-2">{{ post.title }}</h1>
-                    <div class="text-gray-600">
-                        <span>By {{ post.author.get_full_name|default:post.author.username }}</span>
-                        <span class="mx-2">•</span>
-                        <span>{{ post.created_date|date:"F d, Y" }}</span>
-                        {% if post.categories.all %}
-                            <span class="mx-2">•</span>
-                            {% for category in post.categories.all %}
-                                <span class="bg-gray-100 px-2 py-1 rounded text-sm">{{ category.name }}</span>
-                            {% endfor %}
-                        {% endif %}
-                    </div>
-                </header>
+        <div>
+            <header>
+                <h1>{{ post.title }}</h1>
+                <img class='blog-image' src="{{ post.preview_image }}" alt="{{ post.title }}">
+                <p>{{ post.content|safe }}</p>
+                <div>
+                    <span>By {{ post.author.get_full_name|default:post.author.username }}</span>
+                    <span>Created on {{ post.created_date|date:"F d, Y" }}</span>
+                    <span>Last updated on {{ post.published_date|date:"F d, Y" }}</span>
 
-                <div class="prose max-w-none">
-                    {{ post.content|safe }}
+                    {% if request.user.pk == present.user.pk or user.is_staff %}
+                        <div>
+                            <a href="{% url 'post_edit' post.pk %}">Edit Post</a>
+                            <br>
+                            <a href="{% url 'post_delete' post.pk %}">Delete Post</a>
+                        </div>
+                    {% endif %}
                 </div>
+            </header>
 
-                {% if user.is_staff %}
-                    <div class="mt-6 pt-6 border-t flex justify-end space-x-4">
-                        <a href="{% url 'post_edit' pk=post.pk %}" class="text-blue-500 hover:text-blue-700">Edit
-                            Post</a>
-                        <a href="{% url 'post_delete' pk=post.pk %}" class="text-red-500 hover:text-red-700">Delete
-                            Post</a>
-                    </div>
-                {% endif %}
-            </div>
-
-        </article>
+        </div>
         <h2>Comments</h2>
         <div class="comments-section">
-            {% for comment in post.comments.all %}
-                <div class="media mb-3 comment-item">
-                    <img src="https://via.placeholder.com/50" class="mr-3 rounded-circle comment-avatar"
-                         alt="User avatar">
-                    <div class="media-body comment-content">
-                        <h5 class="mt-0 comment-author">{{ comment.author }}</h5>
-                        <p class="comment-text">{{ comment.content }}</p>
+            <div>
+                {% for comment in post.comments.all %}
+                    <div>
+                        <h5>{{ comment.author }}</h5>
+                        <p>{{ comment.content }}</p>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
+
     </div>
 {% endblock %}

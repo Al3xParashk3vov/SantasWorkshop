@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.urls import reverse_lazy
 from django.utils import timezone
 
 from django.shortcuts import render, get_object_or_404, redirect
@@ -29,9 +30,11 @@ class BlogPostListView(ListView):
 class BlogPostDetailView(DetailView):
     model = BlogPost
     template_name = 'blog/post_detail.html'
+    context_object_name = 'post'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['post'] = self.object
         context['comments'] = Comment.objects.filter(post=self.object)
         return context
 
@@ -41,6 +44,7 @@ class BlogPostCreateView(PermissionRequiredMixin, CreateView):
     form_class = BlogPostForm
     template_name = 'blog/post_add.html'
     permission_required = 'can_publish_post'
+    success_url = reverse_lazy('post_list')
 
     def form_valid(self, form):
         form.instance.author = self.request.user

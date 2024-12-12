@@ -3,6 +3,9 @@
 {% block content %}
 
     <div class="container">
+        <h1 class="top-message"><a href="{% url 'present-add' %}">
+            Wish for a present!
+        </a></h1>
         <div class="posts">
             {% for present in presents %}
                 <a href="{% url 'present-details' present.pk %}">
