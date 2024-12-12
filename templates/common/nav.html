@@ -40,6 +40,12 @@
                     Story
                 </a>
             </li>
+        
+            <li>
+                <a href="{% url 'post_list' %}" class="nb-l">
+                    Santa's Blog
+                </a>
+            </li>
         </ul>
 
         {% if not request.user.is_authenticated %}
