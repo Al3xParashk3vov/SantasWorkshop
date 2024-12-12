@@ -36,6 +36,7 @@ MY_APPS = [
     'SantasWorkshop.base',
     'SantasWorkshop.accounts',
     'SantasWorkshop.presents',
+    'SantasWorkshop.blogs',
 ]
 
 INSTALLED_APPS = [
