@@ -1,7 +1,7 @@
 /* Form container */
 .form-container {
     max-width: 800px;
-    margin: 10px auto;
+    margin: 10px auto 50px;
     padding: 100px;
     background-color: rgba(0, 255, 0, 0.25);
     border-radius: 8px;
@@ -50,6 +50,7 @@ select {
     border: 2px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
+    margin-bottom: 10px;
     transition: border-color 0.3s;
 }
 
@@ -73,6 +74,7 @@ button[type="submit"] {
     width: 100%;
     font-size: 16px;
     transition: background-color 0.3s;
+    margin-top: 15px;
 }
 
 button[type="submit"]:hover {
@@ -111,3 +113,22 @@ button[type="submit"]:hover {
     height: auto;
 }
 
+.top-message{
+    text-align: center;
+    color: Black;
+    background-color: darkgray;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.blog-image{
+    max-width: 200px;
+}
+
+.detail-image{
+    width: 100px;
+    height: 100px;
+}
+.comments-section{
+
+}
