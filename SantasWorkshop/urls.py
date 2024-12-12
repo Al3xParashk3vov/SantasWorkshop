@@ -9,6 +9,7 @@ urlpatterns = [
     path('', include('SantasWorkshop.base.urls')),
     path('accounts/', include('SantasWorkshop.accounts.urls')),
     path('presents/', include('SantasWorkshop.presents.urls')),
+    path('blogs/', include('SantasWorkshop.blogs.urls')),
 ]
 
 if settings.DEBUG:
