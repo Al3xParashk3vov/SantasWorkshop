@@ -25,22 +25,12 @@
                     Wishlist
                 </a>
             </li>
-            {% if request.user.is_authenticated %}
-                <ul>
-                    <li>
-                        <a href="{% url 'present-add' %}" class="nb-l">
-                            Wish for a present
-                        </a>
-                    </li>
-                </ul>
-            {% endif %}
-            
             <li>
                 <a href="{% url 'story' %}" class="nb-l">
                     Story
                 </a>
             </li>
-        
+
             <li>
                 <a href="{% url 'post_list' %}" class="nb-l">
                     Santa's Blog

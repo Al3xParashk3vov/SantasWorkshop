@@ -115,11 +115,20 @@ button[type="submit"]:hover {
 
 .top-message{
     text-align: center;
-    color: Black;
-    background-color: darkgray;
+
+    background-image:  linear-gradient(30deg, #FF4A6E 12%, transparent 12.5%, transparent 87%, #FF4A6E 87.5%, #FF4A6E), linear-gradient(150deg, #FF4A6E 12%, transparent 12.5%, transparent 87%, #FF4A6E 87.5%, #FF4A6E), linear-gradient(30deg, #FF4A6E 12%, transparent 12.5%, transparent 87%, #FF4A6E 87.5%, #FF4A6E), linear-gradient(150deg, #FF4A6E 12%, transparent 12.5%, transparent 87%, #FF4A6E 87.5%, #FF4A6E), linear-gradient(60deg, #FF4A6E80 25%, transparent 25.5%, transparent 75%, #FF4A6E80 75%, #FF4A6E80), linear-gradient(60deg, #FF4A6E80 25%, transparent 25.5%, transparent 75%, #FF4A6E80 75%, #FF4A6E80);
+	background-size: 64px 112px;
+	background-position: 0 0, 0 0, 32px 56px, 32px 56px, 0 0, 32px 56px;
+	background-color: #E4E4ED;
     padding: 10px;
     border-radius: 5px;
+    box-shadow: #222222 0 0 10px;
 }
+
+.top-message h1{
+    color: #3498db;
+}
+
 
 .blog-image{
     max-width: 200px;
