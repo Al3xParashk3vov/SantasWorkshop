@@ -25,6 +25,30 @@
             </header>
 
         </div>
+        <div>
+        <h2>Add a comment</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ formset.management_form }}
+                <div>
+                    {% for form in formset %}
+                        <div>
+                            <div>
+                                {{ form.author }}
+                            </div>
+                            <div>
+                                {{ form.content }}
+                            </div>
+                            <div>
+                                <button type="submit">Post</button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </form>
+        </div>
+
+
         <h2>Comments</h2>
         <div class="comments-section">
             <div>

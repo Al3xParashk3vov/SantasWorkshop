@@ -1,15 +1,14 @@
 #main-background {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     width: auto;
     overflow: auto;
     z-index: 10;
-    /*background-color: #232323;*/
 }
 
 
 #main-view {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 15%; /* leave 15% space for the left sidebar */
     right: 15%;
@@ -17,6 +16,7 @@
     height: auto;
     background-color: rgba(255, 255, 255, 0.25); /* pink with 10% opacity */
     padding: 20px;
+    padding-top: 10vh;
     z-index: 1; /* set the z-index to a higher value */
     /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);*/
 }
