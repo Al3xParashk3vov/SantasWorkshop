@@ -3,9 +3,11 @@
 {% block content %}
 
     <div class="container">
+    {% if user.is_authenticated %}
         <div class="top-message"><a href="{% url 'present-add' %}">
             <h1>Wish for a present! 🎁</h1>
         </a></div>
+    {% endif %}
         <div class="posts">
             {% for present in presents %}
                 <a href="{% url 'present-details' present.pk %}">

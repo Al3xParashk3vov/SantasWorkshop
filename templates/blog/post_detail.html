@@ -12,7 +12,7 @@
                 <div>
                     <span>By {{ post.author.get_full_name|default:post.author.username }}</span>
                     <span>Created on {{ post.created_date|date:"F d, Y" }}</span>
-                    {% if request.user.pk == present.user.pk or user.is_staff %}
+                    {% if user.is_staff %}
                         <div>
                             <a href="{% url 'post_edit' post.pk %}">Edit Post</a>
                             <br>
@@ -24,6 +24,7 @@
 
         </div>
         <div>
+        {% if user.is_authenticated %}
         <h2>Add a comment</h2>
             <form method="post">
                 {% csrf_token %}
@@ -44,6 +45,7 @@
                     {% endfor %}
                 </div>
             </form>
+        {% endif %}
         </div>
 
 
@@ -52,7 +54,7 @@
             <div>
                 {% for comment in post.comments.all %}
                     <div class="container" style="background-color: white; border-radius: 10px; margin-bottom: 10px;">
-                        <p>{{ comment.author }}</p>
+                        <p>{{ comment.user.username }}</p>
                         <h5>{{ comment.content }}</h5>
                         <h5>Commented on: {{ comment.created_at|date:"F d, Y" }}</h5>
                     </div>
