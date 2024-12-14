@@ -4,28 +4,16 @@
 {% block content %}
     <div class="edit-present-container">
         <h1>Edit Present</h1>
-        <form method="post" class="present-form">
-            {% csrf_token %}
-            
-            {% for field in form %}
-                <div class="form-group">
-                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                    {{ field }}
-                    {% if field.help_text %}
-                        <small class="help-text">{{ field.help_text }}</small>
-                    {% endif %}
-                    {% if field.errors %}
-                        {% for error in field.errors %}
-                            <p class="error-message">{{ error }}</p>
-                        {% endfor %}
-                    {% endif %}
+        <div class="form-container">
+            <form method="post" class="present-form">
+                {% csrf_token %}
+                {{ form }}
+                <div class="form-buttons">
+                    <button type="submit" class="save-btn">Save Changes</button>
+                    <a href="{% url 'profile-presents' request.user.pk %}" class="cancel-btn">Cancel</a>
                 </div>
-            {% endfor %}
-            
-            <div class="form-buttons">
-                <button type="submit" class="save-btn">Save Changes</button>
-                <a href="{% url 'profile-presents' request.user.pk %}" class="cancel-btn">Cancel</a>
-            </div>
-        </form>
+            </form>
+        </div>
+        
     </div>
 {% endblock %}

@@ -1,6 +1,10 @@
+import re
+
+from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import AbstractUser, User, PermissionsMixin
+from django.core.validators import MaxValueValidator
 from django.db import models
 
 from SantasWorkshop.accounts.managers import AppUserManager
@@ -29,6 +33,27 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'username'  # USERNAME_FIELD means the first credential in our auth
     REQUIRED_FIELDS = ["email"]
 
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+
+        # Ensure username only contains letters, numbers, and underscores
+        if not re.match(r'^\w+$', username):
+            raise forms.ValidationError("Username can only contain letters, numbers, and underscores.")
+
+        # Additional rule (optional): Minimum length for username
+        if len(username) < 5:
+            raise forms.ValidationError("Username must be at least 5 characters long.")
+
+        return username
+
+    def clean(self):
+        cleaned_data = super().clean()
+        username = cleaned_data.get('username')
+
+        return cleaned_data
+
+
+
     def __str__(self):
         return self.username
 
@@ -43,9 +68,12 @@ class Profile(models.Model):
     )
 
     age = models.IntegerField(
+        validators=[
+            MaxValueValidator(100),
+        ],
         blank=True,
         null=True,
-        default=None
+        default=None,
     )
 
     first_name = models.CharField(

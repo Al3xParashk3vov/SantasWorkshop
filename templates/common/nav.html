@@ -36,6 +36,13 @@
                     Santa's Blog
                 </a>
             </li>
+            {% if user.is_superuser or user.is_staff%}
+                <li>
+                    <a href="{% url 'admin:index' %}" class="nb-l">
+                        Admin
+                    </a>
+                </li>
+            {% endif %}
         </ul>
 
         {% if not request.user.is_authenticated %}

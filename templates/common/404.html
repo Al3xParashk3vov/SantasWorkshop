@@ -1,0 +1,18 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div>
+        <img src="{% static 'images/404.gif' %}" alt="404 - page not found">
+    </div>
+
+    <div>
+        <h1> Something that is not supposed to happen, happened. </h1>
+
+        <h3>Error 404 - page not found.</h3>
+        
+        <a href="{% url 'index' %}">
+            <button>Return to the Home Page</button>
+        </a>
+    </div>
+{% endblock %}

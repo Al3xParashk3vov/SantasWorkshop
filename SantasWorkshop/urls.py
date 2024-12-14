@@ -10,7 +10,9 @@ urlpatterns = [
     path('accounts/', include('SantasWorkshop.accounts.urls')),
     path('presents/', include('SantasWorkshop.presents.urls')),
     path('blogs/', include('SantasWorkshop.blogs.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+handler404 = 'SantasWorkshop.base.views.custom_404_view'
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
