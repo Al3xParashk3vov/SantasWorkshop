@@ -20,11 +20,7 @@ class BlogPostListView(ListView):
     paginate_by = 3
 
     def get_queryset(self):
-        # Superusers and staff with view_all permission can see everything
-        if self.request.user.is_superuser or self.request.user.has_perm('blogs.can_view_all_posts'):
-            return BlogPost.objects.all()
-        # Anonymous users only see published posts
-        return BlogPost.objects.filter(status='published')
+        return BlogPost.objects.all().order_by('-created_date')
 
 
 class BlogPostDetailView(DetailView):

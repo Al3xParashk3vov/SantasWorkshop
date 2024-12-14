@@ -1,8 +1,10 @@
 {% extends 'common/base.html' %}
 {% load static %}
+
 {% block content %}
+
     <header>
-        <h1>Welcome to Santa's Workshop!</h1>
+        <h1 style="color: #dddddd">Welcome to Santa's Workshop!</h1>
         <p>Where Holiday Magic Comes to Life</p>
     </header>
     
@@ -35,25 +37,25 @@
 
         <div class="elves">
             <div class="elf">
-                <img src="https://via.placeholder.com/100" alt="Jingles the Elf">
+                <img src="{% static 'images/self1.png' %}" alt="Jingles the Elf">
                 <h3>Jingles</h3>
                 <p>Head Toymaker. No one can craft a toy as fast as Jingles!</p>
             </div>
 
             <div class="elf">
-                <img src="https://via.placeholder.com/100" alt="Tinsel the Elf">
+                <img src="{% static 'images/self2.png' %}" alt="Tinsel the Elf">
                 <h3>Tinsel</h3>
                 <p>Cookie Artisan. Her gingerbread houses are a work of art – and delicious too!</p>
             </div>
 
             <div class="elf">
-                <img src="https://via.placeholder.com/100" alt="Buttons the Elf">
+                <img src="{% static 'images/self3.png' %}" alt="Buttons the Elf">
                 <h3>Buttons</h3>
                 <p>Gift Wrapper Extraordinaire. No fold, crease, or ribbon is ever out of place.</p>
             </div>
 
             <div class="elf">
-                <img src="https://via.placeholder.com/100" alt="Spark the Elf">
+                <img src="{% static 'images/self4.png' %}" alt="Spark the Elf">
                 <h3>Spark</h3>
                 <p>Reindeer Trainer. She makes sure the reindeer are ready for takeoff every Christmas Eve!</p>
             </div>
@@ -82,5 +84,7 @@
             Stay on the "Nice List" and check back often as new features are unwrapped each day!
         </p>
     </div>
+
+    <p style="text-align: center"><a href="{% url 'index' %}">Go back to the home page.</a></p>
 
 {% endblock %}

@@ -11,4 +11,3 @@ class KidStatusAdmin(admin.ModelAdmin):
         obj.updated_by = request.user
         super().save_model(request, obj, form, change)
 
-admin.site.register(KidStatus, KidStatusAdmin)

@@ -26,7 +26,8 @@ class UserRegisterView(CreateView):
 
         return super().form_valid(form)
 
-class ProfileDetailView(LoginRequiredMixin, DetailView):
+# LoginRequiredMixin,
+class ProfileDetailView( DetailView):
     model = UserModel
     template_name = 'profiles/profile-details-page.html'
     slug_field = 'pk'
@@ -92,8 +93,8 @@ class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         profile = get_object_or_404(Profile, pk=self.kwargs['pk'])
         return self.request.user == profile.user
 
-
-class ProfilePresentsDashboard(LoginRequiredMixin, ListView):
+# LoginRequiredMixin,
+class ProfilePresentsDashboard( ListView):
     model = Present
     template_name = 'profiles/profile-presents-page.html'
     context_object_name = 'presents'
