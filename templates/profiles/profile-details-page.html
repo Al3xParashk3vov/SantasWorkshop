@@ -26,6 +26,21 @@
             <p>Last Name: {{ object.profile.last_name }}</p>
             <p>Age: {{ object.profile.age }}</p>
             <p>Presents wished for: <a href="{% url 'profile-presents' object.pk %}">{{ object.profile.presents_count }}</a></p>
+            <p>Status: {{ kid_status.get_status_display }}</p>
+            
+            {% if request.user.is_staff %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <select name="status" class="status-select">
+                            {% for value, label in status_choices %}
+                                <option value="{{ value }}" {% if kid_status.status == value %}selected{% endif %}>
+                                    {{ label }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit">Update Status</button>
+                    </form>
+                {% endif %}
         </div>
     </div>
 {% endblock %}
