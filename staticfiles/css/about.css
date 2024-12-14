@@ -1,0 +1,90 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    /*margin: 0;*/
+    /*padding: 0;*/
+}
+
+header {
+    background-color: #c62828;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+main {
+    padding: 2rem 10%;
+    line-height: 1.6;
+}
+
+main h2 {
+    color: #c62828;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.section {
+    margin-bottom: 2rem;
+}
+
+.highlight {
+    color: #c62828;
+    font-weight: bold;
+}
+
+.elves {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.elf {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    flex: 1 1 45%;
+    text-align: center;
+}
+
+.elf img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+footer {
+    background-color: #c62828;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+.image-container {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.image-container img {
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.story-paragraph {
+    margin-bottom: 1.5rem;
+}
