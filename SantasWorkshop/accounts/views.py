@@ -8,6 +8,7 @@ from django.views.generic import CreateView, DetailView, UpdateView, DeleteView,
 from SantasWorkshop.accounts.forms import CustomUserForm, ProfileEditForm
 from SantasWorkshop.accounts.models import Profile
 from SantasWorkshop.presents.models import Present
+from SantasWorkshop.review.models import KidStatus
 
 UserModel = get_user_model()
 
@@ -33,8 +34,33 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['user_profile'] = self.object  # add the user profile to the context
+        context['user_profile'] = self.object
+
+        # Get or create kid status
+        kid_status, created = KidStatus.objects.get_or_create(
+            user=self.object,
+            defaults={'status': 'GOOD'}
+        )
+        context['kid_status'] = kid_status
+
+        # Add status choices if user is staff
+        if self.request.user.is_staff:
+            context['status_choices'] = KidStatus.STATUS_CHOICES
+
         return context
+
+    def post(self, request, *args, **kwargs):
+        if request.user.is_staff:
+            self.object = self.get_object()
+            kid_status = KidStatus.objects.get_or_create(user=self.object)[0]
+            new_status = request.POST.get('status')
+
+            if new_status in dict(KidStatus.STATUS_CHOICES):
+                kid_status.status = new_status
+                kid_status.save()
+                messages.success(request, f"Status updated to {kid_status.get_status_display()}")
+
+        return self.get(request, *args, **kwargs)
 
 class ProfileEditView(LoginRequiredMixin, UpdateView):
     model = Profile
