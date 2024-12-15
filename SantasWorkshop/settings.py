@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure---9h@#01ja%$gb7!tl%r@5)q$ik!t4+2^z=u782vlm^sa+5@@4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost' , '127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -136,8 +136,8 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 # CRISPY_TEMPLATE_PACK = 'uni_form'
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = 'static/'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
