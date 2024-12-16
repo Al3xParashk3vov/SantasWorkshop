@@ -1,4 +1,4 @@
-
+from asgiref.sync import sync_to_async
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect, render
@@ -31,6 +31,18 @@ class PresentDetailView( DetailView):
         # Add if the current user is the owner
         context['is_owner'] = self.object.user == self.request.user
         return context
+
+    # async def get_context_data(self, **kwargs):
+    #     context = await sync_to_async(super().get_context_data)(**kwargs)
+    #     # Add if the current user is the owner
+    #     context['is_owner'] = self.object.user == self.request.user
+    #     return context
+    #
+    # # Make the get method async as well
+    # async def get(self, request, *args, **kwargs):
+    #     self.object = await sync_to_async(self.get_object)()
+    #     context = await self.get_context_data(object=self.object)
+    #     return self.render_to_response(context)
 
 class PresentEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Present

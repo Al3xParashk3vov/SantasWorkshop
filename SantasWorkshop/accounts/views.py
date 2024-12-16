@@ -1,3 +1,4 @@
+from asgiref.sync import sync_to_async
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -100,10 +101,22 @@ class ProfilePresentsDashboard( ListView):
     context_object_name = 'presents'
     paginate_by = 6  # Optional: adds pagination for many presents
 
-    def get_queryset(self):
-        return Present.objects.filter(user_id=self.kwargs['pk'])
+    # def get_queryset(self):
+    #     return Present.objects.filter(user_id=self.kwargs['pk'])
+    #
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['total_presents'] = self.get_queryset().count()
+    #     return context
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['total_presents'] = self.get_queryset().count()
+    async def get_queryset(self):
+        return await sync_to_async(list)(
+            Present.objects.filter(user_id=self.kwargs['pk'])
+        )
+
+    async def get_context_data(self, **kwargs):
+        context = await sync_to_async(super().get_context_data)(**kwargs)
+        context['total_presents'] = await sync_to_async(
+            Present.objects.filter(user_id=self.kwargs['pk']).count
+        )()
         return context
