@@ -24,12 +24,12 @@
                 </a>
 
             {% empty %}
-                <h1 class="no-posts">No Posts</h1>
+                <h1 class="no-posts">No presents wished for yet</h1>
             {% endfor %}
 
 
             {% if not page_obj.has_next and page_obj.number == 1 %}
-                <p>These are the only wishes</p>
+                <p></p>
             {% else %}
                 <div class="pagination">
                     <span class="step-links">

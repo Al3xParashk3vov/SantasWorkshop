@@ -18,26 +18,16 @@ class ProfileInline(admin.StackedInline):
 @admin.register(UserModel)
 class AppUserAdmin(UserAdmin):
     inlines = (ProfileInline,)
-    form = ProfileEditForm
-    add_form = CustomUserForm
-
-    list_display = ('username', 'email')
-
-    add_fieldsets = (
-        (
-            None,
-            {
-                "classes": ("wide",),
-                "fields": ("username", "email", "password1", "password2"),
-            },
-        ),
-    )
+    list_display = ('username', 'email', 'is_staff')  # Ensure is_staff is displayed here
+    list_filter = ('is_staff', 'is_superuser', 'is_active')
 
     fieldsets = (
-        ('Credentials', {'fields': ('email', 'password')}),
-        ('Permissions', {'fields': ('is_staff', 'is_superuser', 'groups', 'user_permissions')}),
-        ('Important Dates', {'fields': ('last_login',)})
+        ('Credentials', {'fields': ('username', 'email', 'password')}),
+        ('Permissions', {'fields': ('is_staff', 'is_superuser', 'groups', 'user_permissions')}),  # Include is_staff
+        ('Important Dates', {'fields': ('last_login',)}),
     )
+
+
 
 
 @admin.register(Profile)

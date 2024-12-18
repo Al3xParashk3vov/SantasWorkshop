@@ -16,7 +16,7 @@ def index(request):
 class DashboardView(ListView):
     template_name = 'presents/dashboard.html'
     context_object_name = 'presents'
-    paginate_by = 9
+    paginate_by = 5
 
     def get_queryset(self):
         queryset = Present.objects.all()

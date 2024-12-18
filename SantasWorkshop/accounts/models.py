@@ -47,10 +47,14 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
         return username
 
     def clean(self):
-        cleaned_data = super().clean()
-        username = cleaned_data.get('username')
+        # Access the 'username' directly from the model instance, not from cleaned_data
+        if not re.match(r'^\w+$', self.username):
+            raise forms.ValidationError("Username can only contain letters, numbers, and underscores.")
 
-        return cleaned_data
+        if len(self.username) < 5:
+            raise forms.ValidationError("Username must be at least 5 characters long.")
+
+        return super().clean()
 
 
 
