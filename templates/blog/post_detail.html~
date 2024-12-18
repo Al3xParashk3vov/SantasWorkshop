@@ -1,0 +1,41 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div>
+
+        <div>
+            <header>
+                <h1>{{ post.title }}</h1>
+                <img class='blog-image' src="{{ post.preview_image }}" alt="{{ post.title }}">
+                <p>{{ post.content|safe }}</p>
+                <div>
+                    <span>By {{ post.author.get_full_name|default:post.author.username }}</span>
+                    <span>Created on {{ post.created_date|date:"F d, Y" }}</span>
+                    <span>Last updated on {{ post.published_date|date:"F d, Y" }}</span>
+
+                    {% if request.user.pk == present.user.pk or user.is_staff %}
+                        <div>
+                            <a href="{% url 'post_edit' post.pk %}">Edit Post</a>
+                            <br>
+                            <a href="{% url 'post_delete' post.pk %}">Delete Post</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </header>
+
+        </div>
+            <h2>Comments</h2>
+        <div class="comments-section">
+            <div>
+                {% for comment in post.comments.all %}
+                    <div>
+                        <h5>{{ comment.author }}</h5>
+                        <p>{{ comment.content }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
