@@ -125,6 +125,7 @@ button[type="submit"]:hover {
     padding: 10px;
     border-radius: 5px;
     box-shadow: #222222 0 0 10px;
+    margin-bottom: 20px;
 }
 
 .top-message h1 {

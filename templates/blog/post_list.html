@@ -6,9 +6,9 @@
         <div>
             <h1>Santa's Blog</h1>
             {% if user.is_staff %}
-                <h1 class="top-message"><a href="{% url 'post_new' %}">
-                    Add a new post to Santa's blog!
-                </a></h1>
+                <div class="top-message"><a href="{% url 'post_new' %}">
+                    <h1>Add a new post to Santa's blog!</h1>
+                </a></div>
             {% endif %}
         </div>
 
