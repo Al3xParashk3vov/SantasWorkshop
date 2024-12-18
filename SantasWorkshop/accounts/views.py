@@ -101,22 +101,22 @@ class ProfilePresentsDashboard( ListView):
     context_object_name = 'presents'
     paginate_by = 6  # Optional: adds pagination for many presents
 
-    # def get_queryset(self):
-    #     return Present.objects.filter(user_id=self.kwargs['pk'])
-    #
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['total_presents'] = self.get_queryset().count()
-    #     return context
+    def get_queryset(self):
+        return Present.objects.filter(user_id=self.kwargs['pk'])
 
-    async def get_queryset(self):
-        return await sync_to_async(list)(
-            Present.objects.filter(user_id=self.kwargs['pk'])
-        )
-
-    async def get_context_data(self, **kwargs):
-        context = await sync_to_async(super().get_context_data)(**kwargs)
-        context['total_presents'] = await sync_to_async(
-            Present.objects.filter(user_id=self.kwargs['pk']).count
-        )()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['total_presents'] = self.get_queryset().count()
         return context
+
+    # async def get_queryset(self):
+    #     return await sync_to_async(list)(
+    #         Present.objects.filter(user_id=self.kwargs['pk'])
+    #     )
+    #
+    # async def get_context_data(self, **kwargs):
+    #     context = await sync_to_async(super().get_context_data)(**kwargs)
+    #     context['total_presents'] = await sync_to_async(
+    #         Present.objects.filter(user_id=self.kwargs['pk']).count
+    #     )()
+    #     return context
