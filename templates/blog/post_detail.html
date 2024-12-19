@@ -24,28 +24,28 @@
 
         </div>
         <div>
-        {% if user.is_authenticated %}
-        <h2>Add a comment</h2>
-            <form method="post">
-                {% csrf_token %}
-                {{ formset.management_form }}
-                <div>
-                    {% for form in formset %}
-                        <div>
+            {% if user.is_authenticated %}
+                <h2>Add a comment</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ formset.management_form }}
+                    <div>
+                        {% for form in formset %}
                             <div>
-                                {{ form.author }}
+                                <div>
+                                    {{ form.author }}
+                                </div>
+                                <div>
+                                    {{ form.content }}
+                                </div>
+                                <div>
+                                    <button type="submit">Post</button>
+                                </div>
                             </div>
-                            <div>
-                                {{ form.content }}
-                            </div>
-                            <div>
-                                <button type="submit">Post</button>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </form>
-        {% endif %}
+                        {% endfor %}
+                    </div>
+                </form>
+            {% endif %}
         </div>
 
 
@@ -57,6 +57,13 @@
                         <p>{{ comment.user.username }}</p>
                         <h5>{{ comment.content }}</h5>
                         <h5>Commented on: {{ comment.created_at|date:"F d, Y" }}</h5>
+                        {% if user.is_staff or user.is_superuser %}
+                            <div>
+                                <a href="{% url 'comment_edit' comment.pk %}">Edit Comment</a>
+                                <br>
+                                <a href="{% url 'comment_delete' comment.pk %}">Delete Comment</a>
+                            </div>
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>
