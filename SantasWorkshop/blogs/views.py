@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.utils import timezone
 
@@ -9,7 +9,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.core.exceptions import PermissionDenied
 from django.contrib import messages
 
-from SantasWorkshop.blogs.forms import BlogPostForm, CommentForm, CommentFormSet
+from SantasWorkshop.blogs.forms import BlogPostForm, CommentForm, CommentFormSet, CommentEditForm
 from SantasWorkshop.blogs.models import BlogPost, Comment
 
 
@@ -94,19 +94,36 @@ class BlogPostDeleteView(PermissionRequiredMixin, DeleteView):
 class CommentCreateView(CreateView):
     model = Comment
     form_class = CommentForm
-    template_name = 'blog/comment_form.html'
 
     def form_valid(self, form):
         form.instance.post = self.kwargs['pk']
         return super().form_valid(form)
 
 
-class CommentUpdateView(UpdateView):
+class CommentEditView(LoginRequiredMixin, UpdateView):
     model = Comment
-    form_class = CommentForm
-    template_name = 'blog/comment_form.html'
+    form_class = CommentEditForm
+    template_name = 'blog/comment_edit.html'
+
+    def get_success_url(self):
+        messages.success(self.request, 'Comment updated successfully.')
+        return reverse_lazy('post_detail', kwargs={'pk': self.object.post.pk})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment'] = self.object
+        return context
 
 
-class CommentDeleteView(DeleteView):
+class CommentDeleteView(LoginRequiredMixin, DeleteView):
     model = Comment
-    template_name = 'blog/comment_confirm_delete.html'
+    template_name = 'blog/comment_delete.html'
+
+    def get_success_url(self):
+        messages.success(self.request, 'Comment deleted successfully.')
+        return reverse_lazy('post_detail', kwargs={'pk': self.object.post.pk})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment'] = self.object
+        return context

@@ -19,7 +19,7 @@ class BlogPostEditForm(BlogPostForm):
 
 
 class BlogPostDeleteForm(BlogPostForm, DisableFieldsMixin):
-    disabled_fields = ('__all__',)
+    disabled_fields = ('all',)
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -46,7 +46,17 @@ class CommentForm(forms.ModelForm):
             },
         }
 
-# Create the formset
+class CommentEditForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']
+        widgets = {
+            'content': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 3,
+            }),
+        }
+
 CommentFormSet = modelformset_factory(
     Comment,
     form=CommentForm,
